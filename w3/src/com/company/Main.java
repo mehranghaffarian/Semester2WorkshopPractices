@@ -1,6 +1,5 @@
 package com.company;
 
-import java.net.StandardSocketOptions;
 import java.util.Scanner;
 
 public class Main {
@@ -47,10 +46,14 @@ public class Main {
 
             else if(addFac == 1){
                 if(currentSize < 10){
-                    System.out.println("please enter the faculty name and capacity");
+                    System.out.println("please enter the faculty name");
                     scan.nextLine();
+                    String addName = scan.nextLine();
 
-                    Faculty fac = new Faculty(scan.nextLine(), scan.nextInt());
+                    System.out.println("\nplease enter the faculty capacity");
+                    int cap = scan.nextInt();
+
+                    Faculty fac = new Faculty(addName, cap);
 
                     facs[currentSize] = fac;
 
@@ -100,10 +103,8 @@ public class Main {
                     String day = scan.nextLine();
 
                     Lab lab = new Lab(name, cap, day);
-                    facs[choiceFac - 1].getLabsArray()[facs[choiceFac - 1].getCurrentSize()] = lab;
-                    facs[choiceFac - 1].setCurrentSize(facs[choiceFac - 1].getCurrentSize() + 1);
 
-                    System.out.println("the lab added successfully");
+                    facs[choiceFac - 1].creatLab(lab);
                 }
                 else
                     System.out.println("the faculty is full of labs");
@@ -115,7 +116,7 @@ public class Main {
             if(choiceLab == 0)
                 return;
 
-            System.out.println("choose from\n1. change the name of the lab\n2. change the day of the lab\n3. change the capacity of the lab\n4. printing the students list\n5. adding a student");
+            System.out.println("choose from\n1. change the name of the lab\n2. change the day of the lab\n3. change the capacity of the lab\n4. adding a student\n5. printing the students list");
             int choice  = scan.nextInt();
 
             if (choice == 0)
@@ -125,18 +126,20 @@ public class Main {
                 System.out.println("please enter the new name for the lab");
                 scan.nextLine();
 
-                facs[choiceFac - 1].getLabs(choiceLab - 1).setDay(scan.nextLine());
+                facs[choiceFac - 1].getLabs(choiceLab - 1).setName(scan.nextLine());
             }
             else if(choice == 2){
+                System.out.println("please enter the new day for the lab");
+                scan.nextLine();
 
+                facs[choiceFac - 1].getLabs(choiceLab - 1).setDay(scan.nextLine());
             }
             else if(choice == 3){
-
+                System.out.println("please enter the new capacity for the lab");
+                facs[choiceFac - 1].getLabs(choiceLab - 1).setCapacity(scan.nextInt());
             }
-            else if(choice == 4)
-                facs[choiceFac - 1].getLabs(choiceLab - 1).print();
 
-            else if (choice == 5){
+            else if (choice == 4){
                 if(facs[choiceFac - 1].getLabsArray()[choiceLab - 1].getCurrentSize() < facs[choiceFac - 1].getLabsArray()[choiceLab - 1].getCapacity())
                 {
                     System.out.println("please enter the:\nstudent first name\nstudent last name\nstudent ID\nstudent AP grade\nstudent math grade");
@@ -146,9 +149,59 @@ public class Main {
 
                     facs[choiceFac - 1].getLabsArray()[choiceLab - 1].getStudents()[facs[choiceFac - 1].getLabsArray()[choiceLab - 1].getCurrentSize()] = std;
                     facs[choiceFac - 1].getLabsArray()[choiceLab - 1].setCurrentSize(facs[choiceFac - 1].getLabsArray()[choiceLab - 1].getCurrentSize() + 1);
+
+                    System.out.println("the student added successfully");
                 }
                 else
                     System.out.println("the lab is full of students");
+            }
+
+            else if(choice == 5){
+                facs[choiceFac - 1].getLabs(choiceLab - 1).print();
+
+                System.out.println("please choose a student if you want to change the student info if not enter 2");
+                choiceStudent = scan.nextInt();
+
+                if(choiceStudent == 0)
+                    return;
+
+                if(choiceStudent == 1) {
+                    System.out.println("what do you want to change\n1. Math grade\n2. AP grade\n3. first name\n4. last name\n5. ID number");
+
+                    choice = scan.nextInt();
+
+                    if (choice == 0)
+                        return;
+
+                    else if (choice == 1){
+                        System.out.println("please enter the new Math grade");
+                        facs[choiceFac - 1].getLabs(choiceLab - 1).getStudents()[choiceStudent - 1].setGrade(1, scan.nextDouble());
+                    }
+                    else if (choice == 2){
+                        System.out.println("please enter the new AP grade");
+                        facs[choiceFac - 1].getLabs(choiceLab - 1).getStudents()[choiceStudent - 1].setGrade(2, scan.nextDouble());
+                    }
+                    else if (choice == 3){
+                        System.out.println("please enter the new first name");
+                        scan.nextLine();
+
+                        facs[choiceFac - 1].getLabs(choiceLab - 1).getStudents()[choiceStudent - 1].setString(1, scan.nextLine());
+                    }
+                    else if (choice == 4){
+                        System.out.println("please enter the new last name");
+                        scan.nextLine();
+
+                        facs[choiceFac - 1].getLabs(choiceLab - 1).getStudents()[choiceStudent - 1].setString(2, scan.nextLine());
+                    }
+                    else if (choice == 5){
+                        System.out.println("please enter the new ID");
+                        scan.nextLine();
+
+                        facs[choiceFac - 1].getLabs(choiceLab - 1).getStudents()[choiceStudent - 1].setString(3, scan.nextLine());
+                    }
+
+                    System.out.println("the info changed successfully");
+                }
             }
         }
     }

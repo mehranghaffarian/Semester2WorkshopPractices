@@ -42,12 +42,14 @@ public class Lab {
      * print the students info
      */
     public void print() {
-        for (int i = 0;i < currentSize;i++)
+        for (int i = 0;i < currentSize;i++) {
+            System.out.printf("%d. ", i + 1);
             students[i].print();
+        }
     }
 
     public void printLab(){
-        System.out.printf("%s: average:%.2f", name, avg);
+        System.out.printf("%s : average: %.2f", name, avg);
         System.out.println(", capacity:" + capacity + ", current size:" + currentSize + ", day:" + day);
     }
 
@@ -73,7 +75,8 @@ public class Lab {
         for (int i = 0;i < currentSize;i++)
             avg += students[i].getAverage();
 
-        avg /= currentSize;
+        if (currentSize != 0)
+            avg /= currentSize;
 
         return avg;
     }
@@ -82,7 +85,8 @@ public class Lab {
         for (int i = 0;i < currentSize;i++)
             avg += students[i].getAverage();
 
-        avg /= currentSize;
+        if (currentSize != 0)
+            avg /= currentSize;
 
         System.out.println(avg);
     }
@@ -93,6 +97,10 @@ public class Lab {
 
     public void setDay(String day) {
         this.day = day;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getCapacity() {

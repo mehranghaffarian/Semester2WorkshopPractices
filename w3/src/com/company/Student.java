@@ -33,20 +33,29 @@ public class Student {
     }
 
     /**
-     * @param fName set first name of a student
+     * @param string set string of a student info
      */
-    public void setFirstName(String fName) {
-        firstName = fName;
+    public void setString(int choice, String string) {
+        if(choice == 1)
+            firstName = string;
+
+        else if (choice == 2)
+            lastName = string;
+
+        else
+            id =  string;
     }
 
     /**
-     * @param gradeAP will be changed for the student
-     * @param gradeMath will be changed for the student
+     * @param choice will would determine which grade should alter for the student
+     * @param grade will be changed for the student base on the user decision
      */
-    public void setGrade(double gradeAP, double gradeMath){
-        this.gradeAP = gradeAP;
-        this.gradeMath = gradeMath;
-        average = (gradeMath + gradeAP) / 2;
+    public void setGrade(int choice, double grade){
+        if (choice == 1)
+            gradeMath = grade;
+
+        else
+            gradeAP = grade;
     }
 
     /**

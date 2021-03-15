@@ -36,13 +36,16 @@ public class Faculty {
     }
 
     public double getAverage(){
+        int numStudents = 0;
         average = 0;
 
-        for(int i = 0;i < currentSize;i++)
-            average += labs[i].getAvg();
+        for(int i = 0;i < currentSize;i++) {
+            average += labs[i].getAvg() * labs[i].getCurrentSize();
+            numStudents += labs[i].getCurrentSize();
+        }
 
-        if(currentSize != 0)
-        average /= currentSize;
+        if (numStudents != 0)
+            average /= numStudents;
 
         return average;
     }
