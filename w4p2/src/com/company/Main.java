@@ -4,6 +4,10 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * performs the program
+ * @mehran
+ * */
 public class Main {
 
     public static void main(String[] args) {
