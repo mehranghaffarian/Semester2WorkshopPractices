@@ -3,6 +3,11 @@ package com.company;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 
+/**
+ * Main class to perform the program
+ * @version 1.6
+ * @mehran
+ * */
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
@@ -42,18 +47,3 @@ public class Main {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
